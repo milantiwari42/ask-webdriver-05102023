@@ -8,7 +8,7 @@ Feature: Quote test Scenarios
     Given I open url "https://skryabin.com/webdriver/html/sample.html"
     Then I resize window to 1920 and 1080
 
-@quote1
+  @quote1
   Scenario: Validate Location address
       #Given I open url "https://skryabin.com/webdriver/html/sample.html"
       #Then I resize window to 1920 and 1080
@@ -26,7 +26,7 @@ Feature: Quote test Scenarios
     Then I should see page title as "Sample Page"
     Then element with xpath "//b[@id='location']" should not be displayed
 
-@quote2
+  @quote2
   Scenario: Name field verification
     Then I click on element with xpath "//input[@id='name']"
     Then element with xpath "//div[@id='nameDialog']" should be displayed
@@ -37,6 +37,7 @@ Feature: Quote test Scenarios
     Then element with xpath "//input[@id='name']" should be present
     Then element with xpath "//input[@id='name']" should have attribute "Value" as "First Middle Last"
     Then I wait for 5 sec
+
   @quote3
   Scenario Outline: Name field verification data driven
     Then I click on element with xpath "//input[@id='name']"
@@ -58,6 +59,6 @@ Feature: Quote test Scenarios
       | A         | B          | C        | ABC               |
 
   Scenario: Open URL based on your own request and your own method
-  Then MT navigate to "Quote"
+    Then MT navigate to "Quote"
 
 
