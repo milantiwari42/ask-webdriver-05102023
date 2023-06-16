@@ -61,18 +61,47 @@ Feature: Automate Search Engine
   Scenario: Automate for wiki
     Given I open url "https://www.wiki.com/"
     Then I should see page title as "Wiki.com"
-    Then I type "Who is the richest person in the world?" into element with xpath "//input[@name='q']"
+    Then I type "Banana" into element with xpath "//input[@name='q']"
     Then I click on element with xpath "//input[@name='btnG']"
+    Then I wait for 2 sec
+    Then I should see page title as "Form is not secure"
     Then I click on element with xpath "//button[@id='proceed-button']"
-    #Then I wait for element with xpath "//div[@class='gsc-control-wrapper-cse']" to be present
-    #Then element with xpath "//div[@class='gsc-control-wrapper-cse']" should contain text "Elon Musk"
+    Then I wait for 2 sec
+    Then I should see page title as "Wiki.com"
+    Then I switch to iframe with xpath "//iframe[@name='googleSearchFrame']"
+    Then element with xpath "//*[contains(text(),'Banana')]" should contain text "Banana"
 
 
     @givewater
     Scenario: Automate for giveWater
       Given I open url "https://www.givewater.com/"
-      Then I wait for element with xpath "//img[@class='aligncenter size-full wp-image-171']" to be present
-      Then I click on element with xpath "//i[@class='fas fa-times']"
+      Then I wait for 2 sec
+      Then element with xpath "//div[@class='pum-content popmake-content']" should be present
+      Then I click on element with xpath "//button[@class='pum-close popmake-close']"
+      Then I wait for 2 sec
+      Then element with xpath "//input[@id='site-search']" should be present
+      Then I type "Cucumber" into element with xpath "//input[@id='site-search']"
+      Then I click on element with xpath "//button[@class='btn-search']"
+      Then I wait for 2 sec
+      Then I should see page title contains "GiveWater Web Search"
+      Then element with xpath "//div[@class='layout__mainline']" should be present
+      Then element with xpath "//div[@class='layout__mainline']" should contain text "Cucumber"
+
+
+
+      @ekoru
+      Scenario: Automate for Ekoru
+        When I open url "https://ekoru.org/"
+        Then I should see page title as "Ekoru - every search cleans our oceans"
+        Then element with xpath "//input[@id='fld_q']" should be present
+        Then I type "Carrot" into element with xpath "//input[@id='fld_q']"
+        Then I click on element with xpath "//div[@id='btn_search']"
+        Then I wait for 2 sec
+        Then element with xpath "//div[@class='serp-wrapper']" should be present
+        Then element with xpath "//div[@class='serp-wrapper']" should contain text "Carrot"
+        
+
+
 
 
 
